@@ -54,6 +54,8 @@ public:
 
     void calc( InputArray I0, InputArray I1, InputOutputArray flow ) CV_OVERRIDE;
     void collectGarbage() CV_OVERRIDE;
+    void setSigma();
+
 
 protected:
     float sigma; // Gaussian smoothing parameter
@@ -168,7 +170,12 @@ void OpticalFlowDeepFlow::calc( InputArray _I0, InputArray _I1, InputOutputArray
     W.copyTo(_flow);
 }
 
-void OpticalFlowDeepFlow::collectGarbage() {}
+void OpticalFlowDeepFlow::collectGarbage() {};
+
+void OpticalFlowDeepFlow::setSigma(float val)
+{
+    sigma = val
+};
 
 Ptr<DenseOpticalFlow> createOptFlow_DeepFlow() { return makePtr<OpticalFlowDeepFlow>(); }
 
